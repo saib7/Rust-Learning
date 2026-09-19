@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Build every chapter
+        run: cargo build --workspace --verbose
+      - name: Test every chapter
+        run: cargo test --workspace --verbose
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+        continue-on-error: true
