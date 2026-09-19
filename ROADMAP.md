@@ -27,7 +27,7 @@ let s2 = s1;
 println!("{s1}"); // why does this fail?
 ```
 
-- [ ] Ch01 -- Getting Started (fast; skim if you know another language)
+- [x] Ch01 -- Getting Started (fast; skim if you know another language)
 - [ ] Ch02 -- Guessing Game (your first real program)
 - [ ] Ch03 -- Common Programming Concepts (fast if experienced)
 - [ ] Ch04 -- **Understanding Ownership** (slow down; use every Aquascope diagram; this is the one chapter worth reading twice)
