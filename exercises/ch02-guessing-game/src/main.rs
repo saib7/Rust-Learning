@@ -13,8 +13,36 @@
 //   4. cargo run -p ch02-guessing-game   /   cargo test -p ch02-guessing-game
 //   5. git add -A && git commit -m "ch02: Programming a Guessing Game"
 
+use std::cmp::Ordering;
+use std::io;
+
 fn main() {
-    println!("Chapter 02 -- Programming a Guessing Game: not started yet");
+    println!("Guess the number!");
+    println!("Please input your guess.");
+
+    let secret_number = rand::random_range(1..=10);
+    // println!("The secret number is: {secret_number}");
+    loop {
+        let mut guess = String::new();
+
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Fail to read line");
+        let guess: u16 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+        println!("You guessed: {guess}");
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
+    }
 }
 
 #[cfg(test)]
